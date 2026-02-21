@@ -37,6 +37,9 @@ filePicker.addEventListener("change", (event) => {
 convertForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
+    // show loading message
+    fileDetails.textContent = "Converting PDF to audio, please wait...";
+
     // hide audio till ready
     audioPlayer.style.display = "none";
     audioPlayer.removeAttribute("src");
@@ -44,25 +47,20 @@ convertForm.addEventListener("submit", async (event) => {
     const formData = new FormData(convertForm);
 
     try {
-        const response = await fetch(convertForm.action, {
+        const response = await fetch("/pdf-to-audio", {
             method: "POST",
             body: formData,
         });
-
-        if (!response.ok) {
-            throw new Error("Conversion failed");
-        }
-
         // get mp3 as blob
         const audioBlob = await response.blob();
 
-        // covert blob into temporary url
-        const audioUrl = URL.createObjectURL(audioBlob);
-
         // set audio player source to the temporary url
-        audioPlayer.src = audioUrl;
+        audioPlayer.src = URL.createObjectURL(audioBlob);
         audioPlayer.style.display = "block";
         audioPlayer.load();
+
+        // update file details with success message
+        fileDetails.textContent = "Conversion successful! You can play the audio now.";
     } catch (error) {
         fileDetails.textContent = "There was a problem converting the PDF.";
         console.error("Error:", error);

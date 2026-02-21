@@ -2,11 +2,16 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Hello, Flask</title>
+        <title>PDF to Audio</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+        <link rel="icon" href="{{ url_for('static', filename='images.png') }}" type="image/x-icon" />
+        <!--fonts-->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet" />
     </head>
     <body>
-        <h1>PDF to Audio Converter</h1>
+        <a href="/"><h1>PDF to Audio Converter</h1></a>
         <hr />
 
         <form id="convert-form" action="/pdf-to-audio" enctype="multipart/form-data">
@@ -19,7 +24,7 @@
         
         <div id="file-details"></div>
         <!-- Preview the selected file (PDFs and images) -->
-        <embed id="image-preview" type="application/pdf" width="700" height="1000" style="display:none;" />
+        <embed id="image-preview" type="application/pdf" style="display:none;" />
         
         <script src="{{ url_for('static', filename='app.js') }}"></script>
     </body>

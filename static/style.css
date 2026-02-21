@@ -1,12 +1,47 @@
 embed {
     max-width: 100%;
-    width: 700px;
+    width: 2000px;
     height: 1000px;
     display: none;
 }
 
-h1 {
-    color: red;
+a {
+    text-decoration: none;
 }
 
-    
+h1 {
+    color: rgb(0, 0, 0);
+    font-family: 'Indie Flower', cursive;
+    font-size: 36px;
+    cursor: pointer;
+
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    box-shadow: black 0px 0px 5px;
+}
+
+#convert-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25px;
+}
+
+#file-details {
+    margin-top: 15px;
+    font-size: 18px;
+    color: #333;
+    margin-left: 35%;
+}

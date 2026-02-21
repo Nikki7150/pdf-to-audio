@@ -51,6 +51,5 @@ def pdf_to_audio():
         mimetype='audio/mpeg'
     )
 
-if __name__ == '__main__':
-    # Run the Flask app
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run()
