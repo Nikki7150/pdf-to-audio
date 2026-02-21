@@ -9,9 +9,9 @@
         <h1>PDF to Audio Converter</h1>
         <hr />
 
-        <form id="convert-form" action="{{ url_for('pdf_to_audio') }}" method="post" enctype="multipart/form-data">
-             <input type="file" id="file-picker" name="pdf_file" accept=".pdf" required />
-             <button type="submit">Convert to Audio</button>
+        <form id="convert-form" action="/pdf-to-audio" enctype="multipart/form-data">
+            <input type="file" id="file-picker" name="pdf_file" accept=".pdf" required>
+            <button type="submit">Convert to Audio</button>
         </form>
 
         <audio controls id="audio-player" style="display: none;"></audio>
@@ -19,7 +19,7 @@
         
         <div id="file-details"></div>
         <!-- Preview the selected file (PDFs and images) -->
-        <iframe id="image-preview" src="" title="File Preview"></iframe>
+        <embed id="image-preview" type="application/pdf" width="700" height="1000" style="display:none;" />
         
         <script src="{{ url_for('static', filename='app.js') }}"></script>
     </body>

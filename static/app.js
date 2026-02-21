@@ -36,6 +36,8 @@ filePicker.addEventListener("change", (event) => {
 
 convertForm.addEventListener("submit", async (event) => {
     event.preventDefault();
+
+    // hide audio till ready
     audioPlayer.style.display = "none";
     audioPlayer.removeAttribute("src");
 
@@ -51,13 +53,19 @@ convertForm.addEventListener("submit", async (event) => {
             throw new Error("Conversion failed");
         }
 
-        const data = await response.json();
-        if (data && data.audio_url) {
-            audioPlayer.src = data.audio_url;
-            audioPlayer.style.display = "block";
-        }
+        // get mp3 as blob
+        const audioBlob = await response.blob();
+
+        // covert blob into temporary url
+        const audioUrl = URL.createObjectURL(audioBlob);
+
+        // set audio player source to the temporary url
+        audioPlayer.src = audioUrl;
+        audioPlayer.style.display = "block";
+        audioPlayer.load();
     } catch (error) {
         fileDetails.textContent = "There was a problem converting the PDF.";
+        console.error("Error:", error);
     }
 });
 
